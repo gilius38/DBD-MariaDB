@@ -1698,6 +1698,10 @@ static bool mariadb_dr_connect(
         mysql_options(sock, MYSQL_OPT_USE_REMOTE_CONNECTION, NULL);
       }
 #endif
+        {
+          my_bool get_key = TRUE;
+          mysql_options(sock, MYSQL_OPT_GET_SERVER_PUBLIC_KEY, &get_key);
+        }
 
         /* thanks to Peter John Edwards for mysql_init_command */ 
         (void)hv_stores(processed, "mariadb_init_command", &PL_sv_yes);
